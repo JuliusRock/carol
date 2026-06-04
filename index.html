@@ -1,115 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Carol ❤️</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-<audio id="bgMusic" loop>
-    <source src="audio/carol.mp3" type="audio/mpeg">
-</audio>
 
 <div class="card">
 
-    <div class="flowers">
-        🌹 🌷 🌹
-    </div>
+  <div class="hero">
+    <div class="roses">🌹 🌷 🌹</div>
+    <h1 class="hero-name">Carol</h1>
+    <p class="hero-sub">Uma surpresa feita só para você</p>
+  </div>
 
-    <h1>Carol</h1>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-heart">♥</span>
+    <div class="divider-line"></div>
+  </div>
 
-    <p class="subtitle">
-        Uma surpresa feita só para você
+  <div class="body">
+
+    <p class="msg">
+      Algumas pessoas chegam na vida sem pedir licença<br>
+      e tomam um espaço que a gente nem sabia que existia.
     </p>
 
-    <div class="divider">
-        <span>♥</span>
-    </div>
+    <p class="msg-highlight">Feliz Dia dos Namorados.</p>
 
-    <div class="message">
-
-        <p>
-            Algumas pessoas chegam na vida sem pedir licença
-        </p>
-
-        <p>
-            e ocupam um espaço que a gente nem sabia que existia.
-        </p>
-
-        <br>
-
-        <p class="highlight">
-            Feliz Dia dos Namorados.
-        </p>
-
-        <br>
-
-        <p>
-            Carioca, vaidosa, forte e linda.
-        </p>
-
-        <p>
-            O mundo ainda vai dobrar diante da sua coragem.
-        </p>
-
-    </div>
-
-    <a
-        class="video-button"
-        href="https://youtube.com"
-        target="_blank"
-    >
-        Assistir ao vídeo 🎬
-    </a>
-
-    <div class="qr-area">
-
-        <img
-            src="img/carol-qrcode.png"
-            alt="QR Code"
-        >
-
-        <p class="qr-text">
-            Abra esta surpresa no celular ❤️
-        </p>
-
-    </div>
-
-    <p class="signature">
-        — Alguém que te admira 🌹
+    <p class="msg">
+      Carioca, vaidosa, forte e linda —<br>
+      o mundo vai dobrar diante da sua coragem.
     </p>
 
-</div>
-
-<div id="player">
-
-    <div class="vinyl paused">
-
-        <div class="center"></div>
-
+    <div class="divider2">
+      <div class="divider2-line"></div>
+      <span class="divider2-heart">♥</span>
+      <div class="divider2-line"></div>
     </div>
 
-    <div class="music-label">
-        ♪ Nossa Música
+    <div class="vinyl-section">
+      <div class="vinyl-left">
+        <p class="vinyl-now-playing">♪ <span id="playing-text">Carolina — Seu Jorge</span></p>
+        <p class="vinyl-song-name" id="playing-sub">tocando agora...</p>
+      </div>
+
+      <div class="vinyl-player">
+        <div class="vinyl-bg"></div>
+        <img class="vinyl-disc" id="disc" src="img/disco.png" alt="disco de vinil girando" onclick="togglePlay()" />
+        <img class="vinyl-arm" src="img/haste.png" alt="haste toca-discos" />
+        <button class="pause-btn" id="pauseBtn" onclick="togglePlay()">⏸</button>
+      </div>
     </div>
 
+    <div class="vinyl-hint-row">
+      <p class="vinyl-hint">Clique para<br>pausar/continuar</p>
+      <span class="arrow-curved">↙</span>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="https://youtube.com" class="cta-btn" id="videoBtn">Assistir ao vídeo 🎬</a>
+    </div>
+
+    <p class="sign">— Alguém de longe 🌹</p>
+
+  </div>
 </div>
 
-<script src="script.js"></script>
+<audio id="audio" loop>
+  <source src="audio/carol.mp3" type="audio/mpeg">
+</audio>
 
+<script src="js/script.js"></script>
 </body>
-
 </html>
