@@ -1,0 +1,202 @@
+body {
+
+    margin:0;
+
+    background:#f8eef1;
+
+    font-family:'Cormorant Garamond', serif;
+
+    color:#582f39;
+
+}
+
+.container{
+
+    max-width:900px;
+
+    margin:40px auto;
+
+    padding:60px;
+
+    background:#fff7f8;
+
+    border:1px solid #efc9d2;
+
+    border-radius:25px;
+
+    text-align:center;
+
+}
+
+.flowers{
+
+    font-size:30px;
+
+}
+
+h1{
+
+    font-size:92px;
+
+    font-weight:400;
+
+    margin:20px 0;
+
+}
+
+.subtitle{
+
+    color:#bb6c80;
+
+    font-style:italic;
+
+    font-size:28px;
+
+}
+
+.divider{
+
+    margin:60px 0;
+
+    font-size:22px;
+
+    color:#c56a82;
+
+}
+
+p{
+
+    font-size:24px;
+
+    line-height:1.8;
+
+}
+
+.highlight{
+
+    color:#dd6d8d;
+
+    font-style:italic;
+
+    font-size:34px;
+
+}
+
+.video-button{
+
+    display:inline-block;
+
+    margin-top:40px;
+
+    padding:15px 30px;
+
+    border:1px solid #bbb;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:#333;
+
+    background:white;
+
+    font-size:20px;
+
+}
+
+.signature{
+
+    margin-top:40px;
+
+    color:#c56680;
+
+    font-style:italic;
+
+}
+
+/* PLAYER */
+
+#player{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    text-align:center;
+
+    z-index:999;
+}
+
+.vinyl{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,#f7cad3 0 15px,#111 16px);
+
+    position:relative;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+
+    cursor:pointer;
+
+    animation:spin 4s linear infinite;
+}
+
+.paused{
+
+    animation-play-state:paused;
+}
+
+.center{
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    background-image:url("img/vinyl-center.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+}
+
+.music-label{
+
+    margin-top:10px;
+
+    color:#b25570;
+
+    font-size:18px;
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+}
