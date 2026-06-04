@@ -167,7 +167,7 @@ body {
   animation-play-state: paused;
 }
 
-/* HASTE — rotacionada -145deg, pivô no canto superior direito */
+/* HASTE — rotacionada -45deg, pivô no canto superior direito */
 .vinyl-arm {
   position: absolute;
   top: -16px;
@@ -177,7 +177,7 @@ body {
   object-fit: contain;
   z-index: 3;
   pointer-events: none;
-  transform: rotate(-145deg);
+  transform: rotate(-45deg);
   transform-origin: top right;
 }
 
