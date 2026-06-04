@@ -159,6 +159,7 @@ body {
   object-fit: cover;
   animation: spin 5s linear infinite;
   animation-play-state: running;
+  transform-origin: center center;
   z-index: 1;
   cursor: pointer;
 }
