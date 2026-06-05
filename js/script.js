@@ -6,7 +6,18 @@ const unmuteBar = document.getElementById('unmute-bar');
 let playing = false;
 let muted = true;
 
-// Tenta autoplay mutado — sempre funciona
+function showUnmuteBar() {
+  if (unmuteBar) {
+    unmuteBar.style.display = 'flex';
+  }
+}
+
+function hideUnmuteBar() {
+  if (unmuteBar) {
+    unmuteBar.style.display = 'none';
+  }
+}
+
 function startMuted() {
   audio.muted = true;
   audio.volume = 0.75;
@@ -16,25 +27,26 @@ function startMuted() {
     disc.classList.remove('paused');
     pauseBtn.textContent = '⏸';
     playingSub.textContent = 'toque para ativar o som';
-    if (unmuteBar) unmuteBar.style.display = 'flex';
+    showUnmuteBar();
   }).catch(() => {
     disc.classList.add('paused');
     pauseBtn.textContent = '▶';
     playingSub.textContent = 'toque para ouvir';
+    showUnmuteBar();
   });
 }
 
-// Ativa o som ao primeiro clique do usuário
 function unmute() {
   audio.muted = false;
   muted = false;
+  if (!playing) {
+    audio.play();
+    playing = true;
+    disc.classList.remove('paused');
+    pauseBtn.textContent = '⏸';
+  }
   playingSub.textContent = 'tocando agora...';
-  if (unmuteBar) unmuteBar.style.display = 'none';
-  document.removeEventListener('click', unmuteOnClick);
-}
-
-function unmuteOnClick() {
-  if (muted) unmute();
+  hideUnmuteBar();
 }
 
 function togglePlay() {
@@ -44,7 +56,7 @@ function togglePlay() {
     disc.classList.add('paused');
     pauseBtn.textContent = '▶';
     playingSub.textContent = 'pausado';
-    if (unmuteBar) unmuteBar.style.display = 'none';
+    hideUnmuteBar();
   } else {
     audio.muted = false;
     audio.play();
@@ -53,11 +65,22 @@ function togglePlay() {
     disc.classList.remove('paused');
     pauseBtn.textContent = '⏸';
     playingSub.textContent = 'tocando agora...';
-    if (unmuteBar) unmuteBar.style.display = 'none';
+    hideUnmuteBar();
   }
 }
 
-window.addEventListener('load', () => {
-  setTimeout(startMuted, 600);
-  document.addEventListener('click', unmuteOnClick);
-});
+// Ativa som no primeiro toque em qualquer lugar
+document.addEventListener('click', function onFirstClick(e) {
+  // Não interfere com o botão pause
+  if (e.target.id === 'pauseBtn' || e.target.id === 'disc') return;
+  if (muted) {
+    unmute();
+  }
+}, false);
+
+// Clique direto no banner
+if (unmuteBar) {
+  unmuteBar.addEventListener('click', () => unmute());
+}
+
+window.addEventListener('load', () => setTimeout(startMuted, 600));
