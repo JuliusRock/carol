@@ -4,25 +4,35 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 9999;
   background: #c8607a;
   color: white;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 15px;
-  padding: 12px 20px;
+  font-size: 16px;
+  padding: 14px 20px;
   text-align: center;
   justify-content: center;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  animation: pulse-bar 2s ease infinite;
+  box-shadow: 0 2px 12px rgba(180,80,100,0.3);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+#unmute-bar span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
 }
 
 @keyframes pulse-bar {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
+  50% { opacity: 0.82; }
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
