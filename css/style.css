@@ -1,3 +1,30 @@
+/* BANNER ATIVAR SOM */
+#unmute-bar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: #c8607a;
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  padding: 12px 20px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  animation: pulse-bar 2s ease infinite;
+}
+
+@keyframes pulse-bar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -168,7 +195,7 @@ body {
   animation-play-state: paused;
 }
 
-/* HASTE — rotacionada -20deg, pivô no canto superior direito */
+/* HASTE — suas modificações: -20deg, top 0px */
 .vinyl-arm {
   position: absolute;
   top: 0px;
