@@ -14,6 +14,38 @@
   <span>🎵 Clique em qualquer lugar para ativar o som</span>
 </div>
 
+<!-- MODAL DO VÍDEO -->
+<div id="video-modal">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeVideo()">✕</button>
+    <!--
+      =====================================================
+      VOCÊ PRECISA AJUDAR AQUI — OPÇÃO 1: YouTube
+      Substitua SEU_VIDEO_ID pelo ID do seu vídeo YouTube
+      Exemplo: se o link for youtube.com/watch?v=abc123
+      coloque: src="https://www.youtube.com/embed/abc123"
+      =====================================================
+      <iframe
+        id="video-iframe"
+        src="https://www.youtube.com/embed/SEU_VIDEO_ID"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+      =====================================================
+      VOCÊ PRECISA AJUDAR AQUI — OPÇÃO 2: Arquivo local
+      Se quiser hospedar o vídeo direto no GitHub,
+      suba o arquivo como video/carol.mp4 e use:
+      =====================================================
+    -->
+    <video id="video-iframe" controls>
+      <source src="video/carol.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo.
+    </video>
+  </div>
+</div>
+
 <div class="card">
 
   <div class="hero">
@@ -50,14 +82,45 @@
 
     <div class="vinyl-section">
       <div class="vinyl-left">
-        <p class="vinyl-now-playing">♪ <span id="playing-text">Carol — Julius</span></p>
+        <p class="vinyl-now-playing">♪ <span id="playing-text">Carol, carioca linda — Julius</span></p>
         <p class="vinyl-song-name" id="playing-sub">carregando...</p>
       </div>
 
       <div class="vinyl-player">
         <div class="vinyl-bg"></div>
-        <img class="vinyl-disc" id="disc" src="img/disco.png" alt="disco de vinil girando" onclick="togglePlay()" />
-        <img class="vinyl-arm" src="img/haste.png" alt="haste toca-discos" />
+
+        <!-- Disco girando -->
+        <img class="vinyl-disc" id="disc" src="img/disco.png"
+          alt="disco de vinil" onclick="togglePlay()" />
+
+        <!--
+          HASTE DIVIDIDA EM DUAS PARTES:
+          arm-top = parte de cima (pivot, fica fixa)
+          arm-bottom = parte de baixo (gira ao pausar)
+
+          =====================================================
+          VOCÊ PRECISA AJUDAR AQUI:
+          A haste precisa ser dividida em 2 imagens:
+          - img/haste-top.png  → parte superior (pivot/base)
+          - img/haste-bottom.png → parte inferior (braço+agulha)
+
+          Se não quiser dividir a imagem, use a versão
+          SVG abaixo que simula o efeito com CSS puro.
+          =====================================================
+        -->
+
+        <!-- VERSÃO CSS PURA (sem precisar dividir a imagem) -->
+        <div class="arm-wrapper" id="arm-wrapper">
+          <!-- Parte de cima — fixa, só o pivot -->
+          <div class="arm-top" id="arm-top">
+            <img src="img/haste.png" alt="haste" class="arm-img-top" />
+          </div>
+          <!-- Parte de baixo — gira ao pausar -->
+          <div class="arm-bottom" id="arm-bottom">
+            <img src="img/haste.png" alt="haste" class="arm-img-bottom" />
+          </div>
+        </div>
+
         <button class="pause-btn" id="pauseBtn" onclick="togglePlay()">⏸</button>
       </div>
     </div>
@@ -67,8 +130,9 @@
       <span class="arrow-curved">↙</span>
     </div>
 
+    <!-- BOTÃO VÍDEO — abre modal interno -->
     <div style="text-align:center;">
-      <a href="https://youtube.com" class="cta-btn" id="videoBtn">Assistir ao vídeo 🎬</a>
+      <button class="cta-btn" onclick="openVideo()">Assistir ao vídeo 🎬</button>
     </div>
 
     <p class="sign">— Julio 🌹</p>
