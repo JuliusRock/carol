@@ -52,13 +52,13 @@ function startMuted() {
     disc.classList.remove('paused');
     pauseBtn.textContent = '⏸';
     playingSub.textContent = 'toque para ativar o som';
-    armDrop();
+    // Haste já está na posição correta pelo CSS — não mexe aqui
     showUnmuteBar();
   }).catch(() => {
     disc.classList.add('paused');
     pauseBtn.textContent = '▶';
     playingSub.textContent = 'toque para ouvir';
-    armLift();
+    // Só levanta a haste se o autoplay falhar completamente
     showUnmuteBar();
   });
 }
@@ -72,7 +72,7 @@ function unmute() {
     playing = true;
     disc.classList.remove('paused');
     pauseBtn.textContent = '⏸';
-    armDrop();
+    // Não chama armDrop() aqui — haste já está na posição correta pelo CSS
   }
   playingSub.textContent = 'tocando agora...';
   hideUnmuteBar();
