@@ -271,9 +271,6 @@ body {
   height: 100px;
   z-index: 3;
   pointer-events: none;
-  transform-origin: top right; /* ← EIXO DE ROTAÇÃO */
-  transform: rotate(0deg);
-  transition: transform 0.8s ease;
 }
 
 /* Parte de cima — não usada mais */
@@ -287,6 +284,9 @@ body {
   right: 0;
   width: 100px;
   height: 100px;
+  transform-origin: top right; /* ← EIXO DE ROTAÇÃO — mude aqui */
+  transform: rotate(-10deg);   /* ← POSIÇÃO INICIAL */
+  transition: transform 0.8s ease;
 }
 
 .arm-img-bottom {
