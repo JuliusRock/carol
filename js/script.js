@@ -12,13 +12,9 @@ let armOut = false; // controla se haste está retirada
 
 // --- HASTE ANIMATION ---
 function armLift() {
-  // Gira haste inteira para FORA do disco
-  // Mude o valor de rotate para ajustar o sentido e ângulo:
-  // rotate(-45deg) → gira para esquerda (afasta do disco)
-  // rotate(45deg)  → gira para direita
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(-35deg)'; // ← SENTIDO E ÂNGULO AQUI
+    armBottom.style.transform = 'rotate(25deg)'; // ← sai do disco para direita
   }
   armOut = true;
 }
