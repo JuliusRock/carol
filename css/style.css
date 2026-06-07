@@ -273,39 +273,34 @@ body {
   pointer-events: none;
 }
 
-/* Parte de cima — fixa */
+/* Parte de cima — não usada mais */
 .arm-top {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  /* Mostra só os 40% de cima da imagem */
-  clip-path: inset(0 0 60% 0);
+  display: none;
 }
 
-.arm-img-top {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  transform: rotate(-20deg);
-  transform-origin: top right;
-}
+/*
+  HASTE INTEIRA gira com eixo fixo no topo da imagem
 
-/* Parte de baixo — gira ao pausar */
+  =====================================================
+  ONDE DEFINIR O EIXO DE ROTAÇÃO:
+
+  transform-origin: top right;  ← ESTA LINHA
+
+  Opções para testar:
+  "top right"   → canto superior direito
+  "top center"  → centro superior
+  "top left"    → canto superior esquerdo
+  "80% 5%"      → posição percentual personalizada
+  =====================================================
+*/
 .arm-bottom {
   position: absolute;
   top: 0;
   right: 0;
   width: 100px;
   height: 100px;
-  overflow: hidden;
-  /* Mostra só os 60% de baixo da imagem */
-  clip-path: inset(40% 0 0 0);
-  /* Ponto de rotação no meio — onde une com arm-top */
-  transform-origin: 80% 40%;
-  transform: rotate(0deg);
+  transform-origin: top right; /* ← EIXO AQUI */
+  transform: rotate(-20deg);
   transition: transform 0.8s ease;
 }
 
@@ -313,8 +308,6 @@ body {
   width: 100px;
   height: 100px;
   object-fit: contain;
-  transform: rotate(-20deg);
-  transform-origin: top right;
 }
 
 .pause-btn {
