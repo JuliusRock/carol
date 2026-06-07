@@ -14,7 +14,7 @@ let armOut = false; // controla se haste está retirada
 function armLift() {
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(25deg)'; // ← sai do disco para direita
+    armBottom.style.transform = 'rotate(-25deg)'; // ← invertido para esquerda
   }
   armOut = true;
 }
