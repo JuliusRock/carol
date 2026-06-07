@@ -271,6 +271,9 @@ body {
   height: 100px;
   z-index: 3;
   pointer-events: none;
+  transform-origin: top right; /* ← EIXO DE ROTAÇÃO */
+  transform: rotate(0deg);
+  transition: transform 0.8s ease;
 }
 
 /* Parte de cima — não usada mais */
@@ -278,30 +281,12 @@ body {
   display: none;
 }
 
-/*
-  HASTE INTEIRA gira com eixo fixo no topo da imagem
-
-  =====================================================
-  ONDE DEFINIR O EIXO DE ROTAÇÃO:
-
-  transform-origin: top right;  ← ESTA LINHA
-
-  Opções para testar:
-  "top right"   → canto superior direito
-  "top center"  → centro superior
-  "top left"    → canto superior esquerdo
-  "80% 5%"      → posição percentual personalizada
-  =====================================================
-*/
 .arm-bottom {
   position: absolute;
   top: 0;
   right: 0;
   width: 100px;
   height: 100px;
-  transform-origin: 5px 5px; /* ← EIXO — canto superior ESQUERDO */
-  transform: rotate(0deg);   /* ← POSIÇÃO INICIAL */
-  transition: transform 0.8s ease;
 }
 
 .arm-img-bottom {
