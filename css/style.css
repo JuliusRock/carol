@@ -299,8 +299,8 @@ body {
   right: 0;
   width: 100px;
   height: 100px;
-  transform-origin: top right; /* ← EIXO AQUI */
-  transform: rotate(-10deg);
+  transform-origin: 95px 5px; /* ← EIXO — ajuste se necessário */
+  transform: rotate(0deg);    /* ← POSIÇÃO INICIAL — 0 = sem rotação extra */
   transition: transform 0.8s ease;
 }
 
