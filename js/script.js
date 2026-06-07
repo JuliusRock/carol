@@ -3,25 +3,28 @@ const disc = document.getElementById('disc');
 const pauseBtn = document.getElementById('pauseBtn');
 const playingSub = document.getElementById('playing-sub');
 const unmuteBar = document.getElementById('unmute-bar');
-const armWrapper = document.getElementById('arm-wrapper'); // ← wrapper inteiro gira
+const armBottom = document.getElementById('arm-bottom');
 
 let playing = false;
 let muted = true;
 
 // --- HASTE ANIMATION ---
 function armLift() {
-  // Gira haste para FORA do disco — ajuste o ângulo aqui
-  if (armWrapper) {
-    armWrapper.style.transition = 'transform 0.8s ease';
-    armWrapper.style.transform = 'rotate(25deg)'; // ← positivo = direita
+  // Gira haste para FORA do disco ao pausar
+  // Mude o ângulo para ajustar o movimento:
+  // rotate(-45deg) → gira para esquerda
+  // rotate(45deg)  → gira para direita
+  if (armBottom) {
+    armBottom.style.transition = 'transform 0.8s ease';
+    armBottom.style.transform = 'rotate(-45deg)'; // ← ÂNGULO AO PAUSAR
   }
 }
 
 function armDrop() {
-  // Volta haste para posição original definida pelo CSS
-  if (armWrapper) {
-    armWrapper.style.transition = 'transform 0.8s ease';
-    armWrapper.style.transform = ''; // ← limpa JS, CSS assume
+  // Volta haste para posição inicial — CSS assume
+  if (armBottom) {
+    armBottom.style.transition = 'transform 0.8s ease';
+    armBottom.style.transform = ''; // ← limpa JS, CSS define posição
   }
 }
 
