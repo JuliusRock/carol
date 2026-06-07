@@ -299,8 +299,8 @@ body {
   right: 0;
   width: 100px;
   height: 100px;
-  transform-origin: 95px 5px; /* ← EIXO — ajuste se necessário */
-  transform: rotate(0deg);    /* ← POSIÇÃO INICIAL — 0 = sem rotação extra */
+  transform-origin: 5px 5px; /* ← EIXO — canto superior ESQUERDO */
+  transform: rotate(0deg);   /* ← POSIÇÃO INICIAL */
   transition: transform 0.8s ease;
 }
 
