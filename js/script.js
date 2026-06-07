@@ -24,11 +24,10 @@ function armLift() {
 }
 
 function armDrop() {
-  // Volta haste para posição inicial sobre o disco
-  // Este valor deve ser o mesmo que está no CSS em .arm-bottom transform
+  // Volta haste para posição inicial — limpa o JS e deixa o CSS assumir
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(-10deg)'; // ← POSIÇÃO INICIAL AQUI
+    armBottom.style.transform = ''; // ← limpa override JS, CSS define posição
   }
   armOut = false;
 }
