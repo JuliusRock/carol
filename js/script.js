@@ -3,29 +3,26 @@ const disc = document.getElementById('disc');
 const pauseBtn = document.getElementById('pauseBtn');
 const playingSub = document.getElementById('playing-sub');
 const unmuteBar = document.getElementById('unmute-bar');
-const armTop = document.getElementById('arm-top');    // parte de cima da haste (fixa)
-const armBottom = document.getElementById('arm-bottom'); // parte de baixo (gira)
+const armWrapper = document.getElementById('arm-wrapper'); // ← wrapper inteiro gira
 
 let playing = false;
 let muted = true;
-let armOut = false; // controla se haste está retirada
 
 // --- HASTE ANIMATION ---
 function armLift() {
-  if (armBottom) {
-    armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(-25deg)'; // ← invertido para esquerda
+  // Gira haste para FORA do disco — ajuste o ângulo aqui
+  if (armWrapper) {
+    armWrapper.style.transition = 'transform 0.8s ease';
+    armWrapper.style.transform = 'rotate(25deg)'; // ← positivo = direita
   }
-  armOut = true;
 }
 
 function armDrop() {
-  // Volta haste para posição inicial — limpa o JS e deixa o CSS assumir
-  if (armBottom) {
-    armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = ''; // ← limpa override JS, CSS define posição
+  // Volta haste para posição original definida pelo CSS
+  if (armWrapper) {
+    armWrapper.style.transition = 'transform 0.8s ease';
+    armWrapper.style.transform = ''; // ← limpa JS, CSS assume
   }
-  armOut = false;
 }
 
 // --- UNMUTE BAR ---
