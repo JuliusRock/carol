@@ -303,8 +303,8 @@ body {
   overflow: hidden;
   /* Mostra só os 60% de baixo da imagem */
   clip-path: inset(40% 0 0 0);
-  /* Ponto de rotação no topo — onde une com arm-top */
-  transform-origin: top right;
+  /* Ponto de rotação no meio — onde une com arm-top */
+  transform-origin: 80% 40%;
   transform: rotate(0deg);
   transition: transform 0.8s ease;
 }
