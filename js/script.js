@@ -18,7 +18,7 @@ function armLift() {
   // rotate(45deg)  → gira para direita
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(-30deg)'; // ← SENTIDO E ÂNGULO AQUI
+    armBottom.style.transform = 'rotate(-35deg)'; // ← SENTIDO E ÂNGULO AQUI
   }
   armOut = true;
 }
