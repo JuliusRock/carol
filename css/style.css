@@ -300,7 +300,7 @@ body {
   width: 100px;
   height: 100px;
   transform-origin: top right; /* ← EIXO AQUI */
-  transform: rotate(-20deg);
+  transform: rotate(-10deg);
   transition: transform 0.8s ease;
 }
 
