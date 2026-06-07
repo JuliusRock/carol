@@ -284,7 +284,7 @@ body {
   right: 0;
   width: 100px;
   height: 100px;
-  transform-origin: top right; /* ← EIXO DE ROTAÇÃO — mude aqui */
+  transform-origin: top right; /* ← EIXO DE ROTAÇÃO */
   transform: rotate(-20deg);   /* ← POSIÇÃO INICIAL */
   transition: transform 0.8s ease;
 }
