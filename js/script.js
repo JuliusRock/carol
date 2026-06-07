@@ -18,7 +18,7 @@ function armLift() {
   // rotate(45deg)  → gira para direita
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(-45deg)'; // ← SENTIDO E ÂNGULO AQUI
+    armBottom.style.transform = 'rotate(-25deg)'; // ← SENTIDO E ÂNGULO AQUI
   }
   armOut = true;
 }
@@ -28,7 +28,7 @@ function armDrop() {
   // Este valor deve ser o mesmo que está no CSS em .arm-bottom transform
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(-20deg)'; // ← POSIÇÃO INICIAL AQUI
+    armBottom.style.transform = 'rotate(-10deg)'; // ← POSIÇÃO INICIAL AQUI
   }
   armOut = false;
 }
