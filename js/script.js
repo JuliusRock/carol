@@ -101,21 +101,27 @@ function togglePlay() {
 // --- TOGGLE VIDEO MODAL ---
 function openVideo() {
   const modal = document.getElementById('video-modal');
-  const iframe = document.getElementById('video-iframe');
+  const videoEl = document.getElementById('video-iframe');
   if (modal) {
     modal.style.display = 'flex';
-    // Pausa música ao abrir vídeo
-    if (playing) togglePlay();
+    if (videoEl) {
+      videoEl.load(); // recarrega o elemento antes de abrir
+      videoEl.play().catch(() => {}); // tenta dar play automatico
+    }
+    if (playing) togglePlay(); // pausa a música
   }
 }
 
 function closeVideo() {
   const modal = document.getElementById('video-modal');
-  const iframe = document.getElementById('video-iframe');
+  const videoEl = document.getElementById('video-iframe');
   if (modal) {
     modal.style.display = 'none';
-    // Para o vídeo ao fechar
-    if (iframe) iframe.src = iframe.src;
+    if (videoEl) {
+      videoEl.pause();      // pausa o vídeo
+      videoEl.currentTime = 0; // volta pro início
+      // NÃO mexe no src — evita corromper a referência
+    }
   }
 }
 
