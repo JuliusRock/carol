@@ -7,24 +7,20 @@ const armBottom = document.getElementById('arm-bottom');
 
 let playing = false;
 let muted = true;
+let videoOpen = false; // controla se o modal está aberto
 
 // --- HASTE ANIMATION ---
 function armLift() {
-  // Gira haste para FORA do disco ao pausar
-  // Mude o ângulo para ajustar o movimento:
-  // rotate(-45deg) → gira para esquerda
-  // rotate(45deg)  → gira para direita
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = 'rotate(-30deg)'; // ← ÂNGULO AO PAUSAR
+    armBottom.style.transform = 'rotate(-30deg)';
   }
 }
 
 function armDrop() {
-  // Volta haste para posição inicial — CSS assume
   if (armBottom) {
     armBottom.style.transition = 'transform 0.8s ease';
-    armBottom.style.transform = ''; // ← limpa JS, CSS define posição
+    armBottom.style.transform = '';
   }
 }
 
@@ -47,19 +43,20 @@ function startMuted() {
     disc.classList.remove('paused');
     pauseBtn.textContent = '⏸';
     playingSub.textContent = 'toque para ativar o som';
-    // Haste já está na posição correta pelo CSS — não mexe aqui
     showUnmuteBar();
   }).catch(() => {
     disc.classList.add('paused');
     pauseBtn.textContent = '▶';
     playingSub.textContent = 'toque para ouvir';
-    // Só levanta a haste se o autoplay falhar completamente
     showUnmuteBar();
   });
 }
 
 // --- UNMUTE ---
 function unmute() {
+  // Não ativa som se o modal de vídeo estiver aberto
+  if (videoOpen) return;
+
   audio.muted = false;
   muted = false;
   if (!playing) {
@@ -67,7 +64,6 @@ function unmute() {
     playing = true;
     disc.classList.remove('paused');
     pauseBtn.textContent = '⏸';
-    // Não chama armDrop() aqui — haste já está na posição correta pelo CSS
   }
   playingSub.textContent = 'tocando agora...';
   hideUnmuteBar();
@@ -76,7 +72,6 @@ function unmute() {
 // --- TOGGLE PLAY/PAUSE ---
 function togglePlay() {
   if (playing) {
-    // PAUSAR — haste sobe
     audio.pause();
     playing = false;
     disc.classList.add('paused');
@@ -85,7 +80,6 @@ function togglePlay() {
     armLift();
     hideUnmuteBar();
   } else {
-    // PLAY — haste desce
     audio.muted = false;
     audio.play();
     playing = true;
@@ -98,18 +92,25 @@ function togglePlay() {
   }
 }
 
-// --- TOGGLE VIDEO MODAL ---
+// --- VIDEO MODAL ---
 function openVideo() {
   const modal = document.getElementById('video-modal');
   const videoEl = document.getElementById('video-iframe');
 
-  // 1. Pausa música PRIMEIRO
+  // Marca modal como aberto ANTES de qualquer outra ação
+  // para bloquear o unmute que pode ser disparado pelo clique
+  videoOpen = true;
+
+  // Pausa música se estiver tocando
   if (playing) togglePlay();
 
-  // 2. Abre o modal
+  // Esconde banner de som se estiver visível
+  hideUnmuteBar();
+
+  // Abre o modal
   if (modal) modal.style.display = 'flex';
 
-  // 3. Reseta e toca o vídeo
+  // Reseta e toca o vídeo com delay
   if (videoEl) {
     videoEl.pause();
     videoEl.currentTime = 0;
@@ -124,30 +125,54 @@ function closeVideo() {
   const modal = document.getElementById('video-modal');
   const videoEl = document.getElementById('video-iframe');
 
-  // 1. Fecha o modal
+  // Fecha o modal
   if (modal) modal.style.display = 'none';
 
-  // 2. Para o vídeo sem tocar no src
+  // Para o vídeo sem tocar no src
   if (videoEl) {
     videoEl.pause();
     videoEl.currentTime = 0;
   }
+
+  // Marca modal como fechado com pequeno delay
+  // para evitar que o clique de fechar dispare o unmute
+  setTimeout(() => {
+    videoOpen = false;
+  }, 100);
 }
 
-// Fecha modal clicando fora
+// Fecha modal clicando fora (no fundo escuro)
 document.addEventListener('click', function(e) {
   const modal = document.getElementById('video-modal');
   if (e.target === modal) closeVideo();
 });
 
-// Ativa som no primeiro toque
-document.addEventListener('click', function onFirstClick(e) {
+// Ativa som no primeiro toque — ignora cliques em elementos específicos
+// e ignora completamente se o modal de vídeo estiver aberto
+document.addEventListener('click', function(e) {
+  // Ignora se modal de vídeo estiver aberto
+  if (videoOpen) return;
+
+  // Ignora cliques no botão pause e no disco
   if (e.target.id === 'pauseBtn' || e.target.id === 'disc') return;
+
+  // Ignora clique no botão de abrir vídeo
+  if (e.target.classList.contains('cta-btn')) return;
+  if (e.target.closest('.cta-btn')) return;
+
+  // Ignora cliques dentro do modal
+  if (e.target.closest('#video-modal')) return;
+
+  // Ativa o som
   if (muted) unmute();
 }, false);
 
+// Clique direto no banner ativa o som
 if (unmuteBar) {
-  unmuteBar.addEventListener('click', () => unmute());
+  unmuteBar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!videoOpen) unmute();
+  });
 }
 
 window.addEventListener('load', () => setTimeout(startMuted, 600));
