@@ -102,26 +102,35 @@ function togglePlay() {
 function openVideo() {
   const modal = document.getElementById('video-modal');
   const videoEl = document.getElementById('video-iframe');
-  if (modal) {
-    modal.style.display = 'flex';
-    if (videoEl) {
-      videoEl.load(); // recarrega o elemento antes de abrir
-      videoEl.play().catch(() => {}); // tenta dar play automatico
-    }
-    if (playing) togglePlay(); // pausa a música
+
+  // 1. Pausa música PRIMEIRO
+  if (playing) togglePlay();
+
+  // 2. Abre o modal
+  if (modal) modal.style.display = 'flex';
+
+  // 3. Reseta e toca o vídeo
+  if (videoEl) {
+    videoEl.pause();
+    videoEl.currentTime = 0;
+    videoEl.load();
+    setTimeout(() => {
+      videoEl.play().catch(() => {});
+    }, 300);
   }
 }
 
 function closeVideo() {
   const modal = document.getElementById('video-modal');
   const videoEl = document.getElementById('video-iframe');
-  if (modal) {
-    modal.style.display = 'none';
-    if (videoEl) {
-      videoEl.pause();      // pausa o vídeo
-      videoEl.currentTime = 0; // volta pro início
-      // NÃO mexe no src — evita corromper a referência
-    }
+
+  // 1. Fecha o modal
+  if (modal) modal.style.display = 'none';
+
+  // 2. Para o vídeo sem tocar no src
+  if (videoEl) {
+    videoEl.pause();
+    videoEl.currentTime = 0;
   }
 }
 
